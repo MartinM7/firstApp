@@ -2,6 +2,7 @@
 
 namespace App\Actions\Fortify;
 
+use App\Models\Registercode;
 use App\Models\Team;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
@@ -23,9 +24,12 @@ class CreateNewUser implements CreatesNewUsers
     {
         Validator::make($input, [
             'name' => ['required', 'string', 'max:255'],
+            'registercode' => ['required', 'string', 'max:255', 'exists:registercodes,registercode'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => $this->passwordRules(),
         ])->validate();
+
+        Registercode::where('registercode', $input['registercode'])->delete();
 
         return DB::transaction(function () use ($input) {
             return tap(User::create([

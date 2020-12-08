@@ -20,8 +20,8 @@
             </div>
 
             <div class="mt-4">
-                <x-jet-label for="code" value="{{ __('Code') }}" />
-                <x-jet-input id="code" class="block mt-1 w-full" type="text" name="code" :value="old('code')" required />
+                <x-jet-label for="registercode" value="{{ __('Registrierungscode') }}" />
+                <x-jet-input id="registercode" class="block mt-1 w-full" type="text" name="registercode" :value="old('registercode')" required />
             </div>
 
             <div class="mt-4">
