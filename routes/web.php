@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Storage;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,6 +16,16 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::get('/files', function () {
+    $files = Storage::disk('sftp')->listcontents();
+
+    usort($files, function ($first, $second) {
+        return $first['timestamp'] <=> $second['timestamp'];
+    });
+
+    dd($files);
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {

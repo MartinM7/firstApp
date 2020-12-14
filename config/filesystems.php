@@ -65,7 +65,30 @@ return [
             'endpoint' => env('AWS_ENDPOINT'),
         ],
 
+        'sftp' => [
+            'driver' => 'sftp',
+            'host' => '37.187.118.108',
+            'username' => 'laravel',
+            'password' => 'Shiwaiwahnoo0op',
+
+            // Settings for SSH key based authentication...
+//        'privateKey' => '/path/to/privateKey',
+//        'password' => 'encryption-password',
+
+            // Optional SFTP Settings...
+            'port' => 51410,
+            'root' => '/home/filme.serien.etc/',
+            'timeout' => 30,
+
+//            'cache' => [
+//                'store' => 'memcached',
+//                'expire' => 10,
+//                'prefix' => 'cache-prefix',
+//            ],
+        ]
+
     ],
+
 
     /*
     |--------------------------------------------------------------------------
