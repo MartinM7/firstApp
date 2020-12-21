@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\FileController;
+use App\Http\Controllers\FileDownloadController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
 
@@ -15,18 +17,11 @@ use Illuminate\Support\Facades\Storage;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
-Route::get('/files', function () {
-    $files = Storage::disk('sftp')->listcontents();
-
-    usort($files, function ($first, $second) {
-        return $first['timestamp'] <=> $second['timestamp'];
-    });
-
-    dd($files);
-});
+Route::middleware(['auth:sanctum'])->get('/files', [FileController::class, 'index'])->name('files');
+Route::middleware(['auth:sanctum'])->get('/download/{filename}', [FileDownloadController::class, 'download'])->name('file.download');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');

@@ -46,6 +46,12 @@ return [
         'local' => [
             'driver' => 'local',
             'root' => storage_path('app'),
+
+            'cache' => [
+                'store' => 'redis',
+                'expire' => 10,
+                'prefix' => 'cache-prefix',
+            ],
         ],
 
         'public' => [
@@ -69,7 +75,7 @@ return [
             'driver' => 'sftp',
             'host' => '37.187.118.108',
             'username' => 'laravel',
-            'password' => 'Shiwaiwahnoo0op',
+            'password' => '',
 
             // Settings for SSH key based authentication...
 //        'privateKey' => '/path/to/privateKey',
@@ -80,11 +86,6 @@ return [
             'root' => '/home/filme.serien.etc/',
             'timeout' => 30,
 
-//            'cache' => [
-//                'store' => 'memcached',
-//                'expire' => 10,
-//                'prefix' => 'cache-prefix',
-//            ],
         ]
 
     ],
