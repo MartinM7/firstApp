@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\FileDownloadController;
 use Illuminate\Support\Facades\Route;
@@ -23,6 +24,4 @@ Route::get('/', function () {
 Route::middleware(['auth:sanctum'])->get('/files', [FileController::class, 'index'])->name('files');
 Route::middleware(['auth:sanctum'])->get('/download/{filename}', [FileDownloadController::class, 'download'])->name('file.download');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');

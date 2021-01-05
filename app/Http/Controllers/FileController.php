@@ -23,7 +23,7 @@ class FileController extends Controller
 
         foreach ($files as $file){
             Media::firstOrCreate(
-                ['filename' => $file['filename']],
+                ['basename' => $file['basename']],
                 [
                     'user_id' => auth()->id(),
                     'type' => $file['type'],
