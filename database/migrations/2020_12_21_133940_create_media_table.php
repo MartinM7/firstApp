@@ -23,6 +23,7 @@ class CreateMediaTable extends Migration
             $table->string('extension');
             $table->string('filename')->unique();
             $table->string('filmdatenbank')->nullable();
+            $table->bigInteger('time');
             $table->timestamps();
         });
     }

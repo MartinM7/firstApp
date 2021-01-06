@@ -9,7 +9,7 @@ class DashboardController extends Controller
 {
     public function index(Request $request)
     {
-        $medias = Media::all();
+        $medias = Media::orderByDesc('time')->get();
 
         return view('dashboard',[
             'medias' => $medias

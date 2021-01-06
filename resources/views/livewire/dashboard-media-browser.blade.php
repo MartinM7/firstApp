@@ -1,4 +1,17 @@
 <div>
+    <div class="flex justify-center">
+        <button class="bg-yellow-300 px-6 mb-4 h-12 rounded-lg" wire:click="updateDatabase()">
+            Datenbank aktualisieren
+        </button>
+        <button class="bg-yellow-300 px-6 mb-4 h-12 rounded-lg" wire:click="test()">
+            test
+        </button>
+    </div>
+
+    @if($updateDatabase)
+        <p>LADE</p>
+    @endif
+
     <div>
         <div class="flex flex-wrap items-center justify-between mb-4">
             <div class="flex-grow">
@@ -33,7 +46,7 @@
                         </td>
                         <td class="py-2 px-3">
                             <div class="w-max-content">
-                                {{ $media->updated_at }}
+                                {{ $media->time }}
                             </div>
                         </td>
                         <td class="py-2 px-3">
@@ -50,7 +63,7 @@
                                         </button>
                                     </li>
                                     <li>
-                                        <button class="text-red-600 font-bold">
+                                        <button class="text-red-600 font-bold" wire:click="delete({{ $media->id }})">
                                             Löschen
                                         </button>
                                     </li>
