@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Models\Media;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 /**
@@ -15,9 +16,10 @@ class FileDownloadController extends Controller
      * @param $file
      * @return BinaryFileResponse
      */
-    public function download($file)
+    public function download(Media $media)
     {
-        return response()->download(storage_path() . '/app/mnt/' . $file);
+
+        return response()->download(storage_path() . '/app/' . $media->path);
 
 //        set_time_limit(0);
 //

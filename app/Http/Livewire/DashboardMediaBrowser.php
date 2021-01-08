@@ -5,57 +5,53 @@ namespace App\Http\Livewire;
 use App\Models\Media;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class DashboardMediaBrowser extends Component
 {
-    public $medias;
+    use WithPagination;
+
+//    public $media;
+    public $model;
     public $updateDatabase = false;
-    protected $listeners = ['refreshMedialist' => '$refresh'];
+    public $query;
+
+    public function mount()
+    {
+//        $this->media = new Media();
+    }
+
+    public function builder()
+    {
+        return new $this->model;
+    }
+
+    public function allMedia()
+    {
+        if ($this->query){
+            return $this->builder()->where('filename', 'like', "%{$this->query}%")->paginate(10);
+        }
+
+        return $this->builder()->orderByDesc('time')->paginate(10);
+    }
+
 
     public function updateDatabase()
     {
-
-        $files = Storage::disk('local')->listcontents('/mnt', true);
-
-        usort($files, function ($first, $second) {
-            return $second['timestamp'] <=> $first['timestamp'];
-        });
-
-        $files = array_filter($files, function ($file){
-            return $file['type'] === 'file' && $file['extension'] !== 'nfo';
-        });
-
-        foreach ($files as $file){
-            Media::firstOrCreate(
-                ['basename' => $file['basename']],
-                [
-                    'user_id' => auth()->id(),
-                    'type' => $file['type'],
-                    'path' => $file['path'],
-                    'size' => $file['size'],
-                    'basename' => $file['basename'],
-                    'extension' => $file['extension'],
-                    'filename' => $file['filename'],
-                    'time' => $file['timestamp']
-                ]
-            );
-        }
-
-        redirect()->to('/dashboard');
-
+        $this->builder()->updateDatabeseFromFilesystem();
     }
 
     public function test()
     {
-        $this->medias = $this->medias->fresh();
-        dd($this->medias);
+//        $this->medias = $this->medias->fresh();
+//        dd($this->media);
 //        $this->emit('refreshMedialist');
     }
 
     public function delete($id)
     {
 
-        if($media = Media::findOrFail($id)){
+        if($media = $this->model::findOrFail($id)){
 
             Storage::delete($media->path);
 
@@ -63,9 +59,7 @@ class DashboardMediaBrowser extends Component
 
         }
 
-        $this->medias = $this->medias->fresh();
     }
-
 
     public function render()
     {

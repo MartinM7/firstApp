@@ -1,21 +1,17 @@
 <div>
     <div class="flex justify-center">
         <button class="bg-yellow-300 px-6 mb-4 h-12 rounded-lg" wire:click="updateDatabase()">
-            Datenbank aktualisieren
+            Refresh
         </button>
-        <button class="bg-yellow-300 px-6 mb-4 h-12 rounded-lg" wire:click="test()">
-            test
-        </button>
+{{--        <button class="bg-yellow-300 px-6 mb-4 h-12 rounded-lg" wire:click="test()">--}}
+{{--            test--}}
+{{--        </button>--}}
     </div>
-
-    @if($updateDatabase)
-        <p>LADE</p>
-    @endif
 
     <div>
         <div class="flex flex-wrap items-center justify-between mb-4">
             <div class="flex-grow">
-                <input type="search" placeholder="Suche nach Dateien" class="w-full px-3 border-2 h-12 rounded-lg">
+                <input type="search" placeholder="Search..." class="w-full px-3 border-2 h-12 rounded-lg" wire:model="query">
             </div>
         </div>
     </div>
@@ -34,10 +30,10 @@
                 </thead>
 
                 <tbody>
-                @foreach($medias as $media)
+                @foreach($this->allMedia() as $media)
                     <tr class="border-gray-100 border-b-2 hover:bg-gray-100">
                         <td class="py-2 px-3 flex items-center">
-                            <a href="" class="p-2 font-bold text-blue-700 flex-grow">
+                            <a href="" class="p-2 whitespace-no-wrap font-bold text-blue-700 flex-grow">
                                 {{ $media->filename }}
                             </a>
                         </td>
@@ -58,13 +54,13 @@
                                         </button>
                                     </li>
                                     <li class="mr-4">
-                                        <button class="text-green-600 font-bold">
+                                        <a href="{{ route('file.download', $media->id) }}" class="text-green-600 font-bold">
                                             Download
-                                        </button>
+                                        </a>
                                     </li>
                                     <li>
                                         <button class="text-red-600 font-bold" wire:click="delete({{ $media->id }})">
-                                            Löschen
+                                            Delete
                                         </button>
                                     </li>
                                 </ul>
@@ -76,4 +72,5 @@
             </table>
         </div>
     </div>
+    {{ $this->allMedia()->links() }}
 </div>

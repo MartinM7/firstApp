@@ -11,8 +11,6 @@ class DashboardController extends Controller
     {
         $medias = Media::orderByDesc('time')->get();
 
-        return view('dashboard',[
-            'medias' => $medias
-        ]);
+        return view('dashboard',);
     }
 }
