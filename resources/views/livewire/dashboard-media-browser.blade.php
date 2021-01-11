@@ -59,7 +59,7 @@
                                     </li>
                                     @if(auth()->id() == 1)
                                         <li>
-                                            <button class="text-red-600 font-bold" wire:click="delete({{ $media->id }})">
+                                            <button class="text-red-600 font-bold" wire:click="$set('confirmingMediaDeletion', {{ $media->id }})">
                                                 Delete
                                             </button>
                                         </li>
@@ -73,6 +73,27 @@
             </table>
         </div>
     </div>
+
+    <x-jet-dialog-modal wire:model="confirmingMediaDeletion">
+        <x-slot name="title">
+            {{ __('Delete') }}
+        </x-slot>
+
+        <x-slot name="content">
+            {{ __('Are you sure?') }}
+        </x-slot>
+
+        <x-slot name="footer">
+            <x-jet-secondary-button wire:click="$set('confirmingMediaDeletion', null)" wire:loading.attr="disabled">
+                {{ __('Nevermind') }}
+            </x-jet-secondary-button>
+
+            <x-jet-danger-button class="ml-2" wire:click="deleteMedia">
+                {{ __('Delete') }}
+            </x-jet-danger-button>
+        </x-slot>
+    </x-jet-dialog-modal>
+
     <div class="mt-4">
         {{ $this->allMedia()->links() }}
     </div>

@@ -15,7 +15,7 @@ class DashboardMediaBrowser extends Component
     public $model;
     public $updateDatabase = false;
     public $query;
-    public
+    public $confirmingMediaDeletion;
 
     public function mount()
     {
@@ -47,6 +47,19 @@ class DashboardMediaBrowser extends Component
 //        $this->medias = $this->medias->fresh();
 //        dd($this->media);
 //        $this->emit('refreshMedialist');
+    }
+
+    public function deleteMedia()
+    {
+        if($media = $this->model::findOrFail($this->confirmingMediaDeletion)){
+
+            Storage::delete($media->path);
+
+            $media->delete();
+
+            $this->confirmingMediaDeletion = null;
+
+        }
     }
 
     public function delete($id)
