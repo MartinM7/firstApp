@@ -38,7 +38,7 @@ class DashboardMediaBrowser extends Component
 
     public function updateDatabase()
     {
-        $this->builder()->updateDatabeseFromFilesystem();
+        $this->builder()->updateDatabaseFromFilesystem();
     }
 
     public function test()

@@ -12,7 +12,7 @@ class Media extends Model
 
     protected $guarded = [];
 
-    public function updateDatabeseFromFilesystem()
+    public function updateDatabaseFromFilesystem()
     {
         $files = Storage::disk('local')->listcontents('/mnt', true);
 
@@ -43,6 +43,19 @@ class Media extends Model
                 ]
             );
         }
+    }
+
+    public function sizeForHumans()
+    {
+        $bytes = $this->size;
+
+        $units = [' B', ' kB', ' MB', ' GB', ' TB', ' PB'];
+
+        for ($i = 0; $bytes > 1024; $i ++) {
+            $bytes /= 1024;
+        }
+
+        return round($bytes, 2) . $units[$i];
     }
 
     public function user()
