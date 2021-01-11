@@ -41,7 +41,7 @@
                         </td>
                         <td class="py-2 px-3">
                             <div class="w-max-content">
-                                {{ \Carbon\Carbon::createFromTimestamp($media->time) }}
+                                {{ \Carbon\Carbon::createFromTimestamp($media->time)->diffForHumans() }}
                             </div>
                         </td>
                         <td class="py-2 px-3">

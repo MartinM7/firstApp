@@ -73,7 +73,7 @@ return [
 
         'sftp' => [
             'driver' => 'sftp',
-            'host' => '37.187.118.108',
+            'host' => '',
             'username' => 'laravel',
             'password' => '',
 
@@ -82,8 +82,8 @@ return [
 //        'password' => 'encryption-password',
 
             // Optional SFTP Settings...
-            'port' => 51410,
-            'root' => '/home/filme.serien.etc/',
+            'port' => 22,
+            'root' => '',
             'timeout' => 30,
 
         ]

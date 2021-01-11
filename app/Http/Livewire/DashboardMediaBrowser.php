@@ -15,6 +15,7 @@ class DashboardMediaBrowser extends Component
     public $model;
     public $updateDatabase = false;
     public $query;
+    public
 
     public function mount()
     {

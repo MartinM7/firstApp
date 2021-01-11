@@ -24,7 +24,6 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-Route::middleware(['auth:sanctum'])->get('/files', [FileController::class, 'index'])->name('files');
 Route::middleware(['auth:sanctum'])->get('/download/{media}', [FileDownloadController::class, 'download'])->name('file.download');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
