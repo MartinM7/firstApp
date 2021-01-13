@@ -36,43 +36,22 @@ class DashboardMediaBrowser extends Component
         return $this->builder()->orderByDesc('time')->paginate(10);
     }
 
-
     public function updateDatabase()
     {
         $this->builder()->updateDatabaseFromFilesystem();
-    }
-
-    public function test()
-    {
-//        $this->medias = $this->medias->fresh();
-//        dd($this->media);
-//        $this->emit('refreshMedialist');
     }
 
     public function deleteMedia()
     {
         if($media = $this->model::findOrFail($this->confirmingMediaDeletion)){
 
-            Storage::delete($media->path);
+            Storage::drive('media')->delete($media->path);
 
             $media->delete();
 
             $this->confirmingMediaDeletion = null;
 
         }
-    }
-
-    public function delete($id)
-    {
-
-        if($media = $this->model::findOrFail($id)){
-
-            Storage::delete($media->path);
-
-            $media->delete();
-
-        }
-
     }
 
     public function render()

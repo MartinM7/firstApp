@@ -14,7 +14,7 @@ class Media extends Model
 
     public function updateDatabaseFromFilesystem()
     {
-        $files = Storage::disk('local')->listcontents('/mnt', true);
+        $files = Storage::disk('media')->listcontents('/', true);
 
 //        if (!count($files)){
 //            dd('empty');
@@ -32,7 +32,7 @@ class Media extends Model
             $this::firstOrCreate(
                 ['basename' => $file['basename']],
                 [
-                    'user_id' => 1,
+                    'user_id' => auth()->id(),
                     'type' => $file['type'],
                     'path' => $file['path'],
                     'size' => $file['size'],

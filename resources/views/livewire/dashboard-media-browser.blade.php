@@ -47,11 +47,6 @@
                         <td class="py-2 px-3">
                             <div class="flex justify-start items-center">
                                 <ul class="flex items-center">
-{{--                                    <li class="mr-4">--}}
-{{--                                        <button class="text-blue-400 font-bold">--}}
-{{--                                            Info--}}
-{{--                                        </button>--}}
-{{--                                    </li>--}}
                                     <li class="mr-4">
                                         <a href="{{ route('file.download', $media->id) }}" class="text-green-600 font-bold">
                                             Download

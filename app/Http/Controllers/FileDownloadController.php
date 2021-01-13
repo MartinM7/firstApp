@@ -19,7 +19,7 @@ class FileDownloadController extends Controller
     public function download(Media $media)
     {
 
-        return response()->download(storage_path() . '/app/' . $media->path);
+        return response()->download('/home/filme.serien.etc/' . $media->path);
 
 //        set_time_limit(0);
 //

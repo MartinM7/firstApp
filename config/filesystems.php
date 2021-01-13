@@ -54,6 +54,11 @@ return [
             ],
         ],
 
+        'media' => [
+            'driver' => 'local',
+            'root' => '/home/filme.serien.etc/'
+        ],
+
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),
