@@ -19,7 +19,12 @@ class FileDownloadController extends Controller
     public function download(Media $media)
     {
 
-        return response()->download('/home/filme.serien.etc/' . $media->path);
+//        return response()->download('/home/filme.serien.etc/' . $media->path);
+
+        return response(null)
+            ->header('X-Accel-Redirect', "/filme/$media->path")
+            ->header('Content-Disposition', 'attachment; filename="' . $media->path . '"')
+            ->header('Content-Type', '');
 
 //        set_time_limit(0);
 //

@@ -16,10 +16,6 @@ class Media extends Model
     {
         $files = Storage::disk('media')->listcontents('/', true);
 
-//        if (!count($files)){
-//            dd('empty');
-//        }
-
         usort($files, function ($first, $second) {
             return $second['timestamp'] <=> $first['timestamp'];
         });
