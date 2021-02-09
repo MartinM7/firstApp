@@ -10,7 +10,7 @@
     <div>
         <div class="flex flex-wrap items-center justify-between mb-4">
             <div class="flex-grow">
-                <input type="search" placeholder="Search..." class="w-full px-3 border-2 h-12 rounded-lg" wire:model="query">
+                <input type="search" placeholder="Search..." class="w-full px-3 border-2 h-12 rounded-lg" wire:model.debounce.500ms="query">
             </div>
         </div>
     </div>

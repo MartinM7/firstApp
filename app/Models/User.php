@@ -62,4 +62,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Media::class);
     }
+
+    public function messages()
+    {
+        return $this->hasMany(Message::class);
+    }
 }

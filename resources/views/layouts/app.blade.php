@@ -38,5 +38,11 @@
         @stack('modals')
 
         @livewireScripts
+
+        <script>
+            setInterval(function (){
+                Livewire.emit('messageAdded')
+            }, 15000)
+        </script>
     </body>
 </html>

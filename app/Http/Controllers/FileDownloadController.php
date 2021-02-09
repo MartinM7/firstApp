@@ -13,8 +13,8 @@ use Symfony\Component\HttpFoundation\BinaryFileResponse;
 class FileDownloadController extends Controller
 {
     /**
-     * @param $file
-     * @return BinaryFileResponse
+     * @param Media $media
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
      */
     public function download(Media $media)
     {
