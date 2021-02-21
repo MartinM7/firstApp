@@ -13,7 +13,7 @@ class MessageBoard extends Component
 
     public function mount()
     {
-        $this->messages = Message::latest()->take(30)->get();
+        $this->messages = Message::latest()->take(30)->whereNotIn('user_id', auth()->user()->blockedUserIds())->get();
     }
 
     public function incrementMessageCount()

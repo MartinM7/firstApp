@@ -32,7 +32,7 @@
                 @foreach($this->allMedia() as $media)
                     <tr class="border-gray-100 border-b-2 hover:bg-gray-100">
                         <td class="py-2 px-3 flex items-center">
-                            <a href="" class="p-2 whitespace-no-wrap font-bold text-blue-700 flex-grow">
+                            <a class="p-2 whitespace-no-wrap font-bold text-blue-700 flex-grow">
                                 {{ $media->filename }}
                             </a>
                         </td>

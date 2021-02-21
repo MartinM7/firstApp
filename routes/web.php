@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BlockListController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\FileDownloadController;
@@ -27,3 +28,5 @@ Route::get('/', function () {
 Route::middleware(['auth:sanctum'])->get('/download/{media}', [FileDownloadController::class, 'download'])->name('file.download');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/blocklist', [BlockListController::class, 'index'])->name('blocklist');
