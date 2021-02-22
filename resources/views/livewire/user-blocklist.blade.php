@@ -3,7 +3,7 @@
         <p>Blocked Users can't see your messages and you can't see their messages!</p>
     </div>
     <div class="flex justify-center">
-        <div class="border-2 border-gray-200 rounded-lg w-6/12">
+        <div class="border-2 border-gray-200 rounded-lg w-max-content md:w-6/12">
             <div class="overflow-auto">
                 <table class="w-full">
                     <thead class="bg-gray-100">
